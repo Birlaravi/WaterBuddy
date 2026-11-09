@@ -1,0 +1,6 @@
+<!DOCTYPE html><html><body style="margin:0;background:#cfd8e6"><iframe id=f style="width:400px;height:340px;border:0;background:#f3f4f6" ></iframe>
+<script>
+const q=new URLSearchParams(location.search);const pet=q.get('pet')||'fox',act=q.get('act')||'none',at=+(q.get('at')||3500);
+document.getElementById('f').src='http://localhost:8766/pet/index.html?pet='+pet+'&interval=60';
+if(act!=='none')setTimeout(()=>{document.getElementById('f').contentDocument.getElementById(act).click()},at);
+</script></body></html>

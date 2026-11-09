@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<style>
+  html, body { margin: 0; height: 100%; background: transparent; overflow: hidden; font-family: system-ui, sans-serif; -webkit-tap-highlight-color: transparent; }
+  canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+  #card {
+    position: fixed; left: 10px; bottom: 110px; width: min(236px, calc(76% - 85px));
+    background: #fff; border-radius: 18px; padding: 14px;
+    box-shadow: 0 10px 28px rgba(0,0,0,.32);
+    opacity: 0; transform: translateY(10px) scale(.94);
+    transition: opacity .25s, transform .25s; pointer-events: none;
+  }
+  #card.on { opacity: 1; transform: none; pointer-events: auto; }
+  #card.sad { background: #e3eefb; }
+  #card::after {
+    content: ""; position: absolute; right: -8px; top: 38px; width: 16px; height: 16px;
+    background: inherit; transform: rotate(45deg); border-radius: 3px;
+  }
+  #card.nodog::after { display: none; }
+  #t { font-size: 15px; font-weight: 600; color: #1b2433; line-height: 1.3; }
+  #card.sad #t { color: #1e4a7a; }
+  #s { font-size: 12px; color: #5b6b86; margin-top: 4px; }
+  #b { display: flex; gap: 8px; margin-top: 12px; }
+  #b button { flex: 1; height: 40px; border: 0; border-radius: 999px; color: #fff; font-size: 14px; font-weight: 600; }
+  #yes { background: #22c55e; }
+  #no { background: #ef4444; }
+  .heart { position: fixed; width: 18px; height: 18px; pointer-events: none; animation: fl 1.5s ease-out forwards; }
+  @keyframes fl { from { opacity: 1; transform: translateY(0) scale(.7); } to { opacity: 0; transform: translateY(-70px) scale(1.25); } }
+
+  #cloud { position: fixed; width: 72px; height: 60px; margin: -78px 0 0 -36px; display: none; pointer-events: none; }
+  #cloud.on { display: block; }
+  .drop { position: absolute; top: 34px; width: 5px; height: 10px; border-radius: 50%; background: #5BB4F0; animation: rain .8s linear infinite; }
+  @keyframes rain { from { transform: translateY(0); opacity: 1; } to { transform: translateY(40px); opacity: 0; } }
+  @keyframes bounce { from { margin-top: -32px; } to { margin-top: -22px; } }
+</style>
+<script type="importmap">
+{ "imports": { "three": "./lib/three.module.min.js", "three/addons/": "./lib/addons/" } }
+</script>
+</head>
+<body>
+  <canvas id="c"></canvas>
+  <div id="cloud"><svg viewBox="0 0 70 40" width="72" height="41"><path d="M16 34a12 12 0 0 1 2-23 15 15 0 0 1 29-3 13 13 0 0 1 8 26z" fill="#8497b0"/></svg><i class="drop" style="left:18px"></i><i class="drop" style="left:34px;animation-delay:.25s"></i><i class="drop" style="left:50px;animation-delay:.5s"></i></div>
+  <div id="card">
+    <div id="t"></div>
+    <div id="s"></div>
+    <div id="b"><button id="yes">Yes</button><button id="no">No</button></div>
+  </div>
+  <script type="module" src="pet.js"></script>
+</body>
+</html>
