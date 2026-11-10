@@ -30,4 +30,6 @@ object Store {
 
     fun addYes(c: Context) { rollDay(c); p(c).edit().putInt("yes", yes(c) + 1).apply() }
     fun addNo(c: Context) { rollDay(c); p(c).edit().putInt("no", no(c) + 1).apply() }
+
+    fun addGlass(c: Context, delta: Int) { rollDay(c); p(c).edit().putInt("yes", maxOf(0, yes(c) + delta)).apply() }
 }

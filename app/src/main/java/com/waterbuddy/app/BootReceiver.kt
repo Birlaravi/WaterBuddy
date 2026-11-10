@@ -9,5 +9,6 @@ class BootReceiver : BroadcastReceiver() {
         if (Store.enabled(context)) {
             Scheduler.schedule(context, Store.interval(context) * 60_000L)
         }
+        Reminders.rescheduleAll(context)
     }
 }
